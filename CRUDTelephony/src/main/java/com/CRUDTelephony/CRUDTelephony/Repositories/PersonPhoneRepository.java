@@ -1,6 +1,5 @@
 package com.CRUDTelephony.CRUDTelephony.Repositories;
 
-import com.CRUDTelephony.CRUDTelephony.Models.Filter;
 import com.CRUDTelephony.CRUDTelephony.Models.PersonPhone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,14 +14,6 @@ public interface PersonPhoneRepository extends JpaRepository<PersonPhone, Intege
     @Modifying
     @Query(value = "SELECT * FROM person_phones LIMIT ?1 OFFSET ?2", nativeQuery = true)
     public List<PersonPhone> getAll(int limit, int offset);
-    @Modifying
-    @Query("SELECT p FROM PersonPhone p WHERE p.phoneFirst = :phoneNumber OR p.phoneSecond = :phoneNumber")
+    @Query(value = "SELECT * FROM person_phones WHERE person_phone_first = ?1 OR person_phone_second = ?1", nativeQuery = true)
     public PersonPhone findByPhoneNumber(String phoneNumber);
-    //public List<PersonPhone> findBYPhoneNumber(String phoneNumber);
-    //public void deleteByPhoneNumber(String phoneNumber);
-    //public List<PersonPhone> finbByLimitAndOffset(Filter filter);
-    //@Modifying
-    //@Query("UPDATE PersonPhones SET id = 12345")
-    //public void updatePersonPhoneByPhoneNumber(String phoneNumber, PersonPhone personPhone);
-    //public void findByPhone()
 }

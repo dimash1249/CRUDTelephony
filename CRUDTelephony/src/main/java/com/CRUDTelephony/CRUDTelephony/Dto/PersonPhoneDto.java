@@ -1,12 +1,10 @@
 package com.CRUDTelephony.CRUDTelephony.Dto;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.Date;
 
 @Data
-@Getter
 public class PersonPhoneDto {
     private int id;
     private String name;

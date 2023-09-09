@@ -29,27 +29,14 @@ public class PersonPhoneService implements IPersonPhoneService {
 
     @Override
     public PersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber){
-        Optional<PersonPhone> personPhone = personPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber));
-        if(personPhone.isPresent()) {
-            return personPhone.get();
-        }
-        else {
-            PersonPhone personPhonePhone = personPhoneRepository.findByPhoneNumber(idOrPhoneNumber);
-            if(personPhonePhone != null) {
-                return personPhonePhone;
-            }
-            else {
-                throw new ResourceNotFoundException("Error");
-            }
-        }
-        //PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        //return personPhone;
+        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
+        return personPhone;
     }
 
-    @Override
-    public PersonPhone create(PersonPhone personPhone) {
-        return personPhoneRepository.save(personPhone);
-    }
+//    @Override
+//    public PersonPhone create(PersonPhone personPhone) {
+//        return personPhoneRepository.save(personPhone);
+//    }
 
     @Override
     public PersonPhone update(String idOrPhoneNumber, PersonPhone personPhoneRequest) {
@@ -62,9 +49,14 @@ public class PersonPhoneService implements IPersonPhoneService {
     }
 
     @Override
-    public void delete(String idOrPhoneNumber){
-        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        personPhoneRepository.delete(personPhone);
+    public void delete(String id){
+        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(id);
+        if(personPhone != null) {
+            personPhoneRepository.delete(personPhone);
+        }
+        else {
+            throw new ResourceNotFoundException("Error not deleted");
+        }
     }
 
     public PersonPhone getPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
@@ -89,5 +81,4 @@ public class PersonPhoneService implements IPersonPhoneService {
             }
         }
     }
-
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface IPersonPhoneService {
     List<PersonPhone> getAll(Filter filter);
     PersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber);
-    PersonPhone create(PersonPhone personPhone);
+//    PersonPhone create(PersonPhone personPhone);
     PersonPhone update(String idOrPhoneNumber, PersonPhone personPhone);
-    void delete(String idOrPhoneNumber);
+    void delete(String id);
 }

@@ -1,7 +1,6 @@
 package com.CRUDTelephony.CRUDTelephony.Models;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 
