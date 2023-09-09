@@ -12,6 +12,12 @@ import java.util.List;
 @Repository
 public interface PersonPhoneRepository extends JpaRepository<PersonPhone, Integer> {
 
+    @Modifying
+    @Query(value = "SELECT * FROM person_phones LIMIT ?1 OFFSET ?2", nativeQuery = true)
+    public List<PersonPhone> getAll(int limit, int offset);
+    @Modifying
+    @Query("SELECT p FROM PersonPhone p WHERE p.phoneFirst = :phoneNumber OR p.phoneSecond = :phoneNumber")
+    public PersonPhone findByPhoneNumber(String phoneNumber);
     //public List<PersonPhone> findBYPhoneNumber(String phoneNumber);
     //public void deleteByPhoneNumber(String phoneNumber);
     //public List<PersonPhone> finbByLimitAndOffset(Filter filter);

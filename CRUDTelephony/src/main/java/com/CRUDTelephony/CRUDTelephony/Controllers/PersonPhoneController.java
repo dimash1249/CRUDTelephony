@@ -25,18 +25,18 @@ public class PersonPhoneController {
     }
 
     @GetMapping
-    public List<PersonPhoneDto> getAllPersonPhones() {
+    public List<PersonPhoneDto> getAllPersonPhones(@RequestParam Filter filter) {
 
-        return personPhoneService.getAll().stream().map(personPhone -> PersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
+        return personPhoneService.getAll(filter).stream().map(personPhone -> PersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
     }
 
-    @GetMapping("/{idOrPhoneNumber}")
-    public ResponseEntity<PersonPhoneDto> getByIdOrPhoneNumber(@PathVariable(name = "id") int id) {
-        PersonPhone personPhone = personPhoneService.getById(id);
+    @GetMapping("/{id}")
+    public String getByIdOrPhoneNumber(@PathVariable(name = "id") String id) {
+        //PersonPhone personPhone = personPhoneService.getByIdOrPhoneNumber(id);
 
-        PersonPhoneDto responsePersonPhone = PersonPhoneMapper.mapToPersonPhoneDto(personPhone);
+        //PersonPhoneDto responsePersonPhone = PersonPhoneMapper.mapToPersonPhoneDto(personPhone);
 
-        return ResponseEntity.ok().body(responsePersonPhone);
+        return "ok";//;ResponseEntity.ok().body("ok");//responsePersonPhone);
     }
 
     @PostMapping
@@ -60,7 +60,7 @@ public class PersonPhoneController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePersonPhone(@PathVariable(name = "id") int id) {
-        personPhoneService.delete(id);
+        //personPhoneService.delete(id);
         return new ResponseEntity<>("Person phone deleted successfully", HttpStatus.OK);
     }
 }

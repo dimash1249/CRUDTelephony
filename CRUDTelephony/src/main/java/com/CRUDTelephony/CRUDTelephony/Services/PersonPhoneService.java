@@ -23,21 +23,14 @@ public class PersonPhoneService implements IPersonPhoneService {
     }
 
     @Override
-    public List<PersonPhone> getAll(){
-        return personPhoneRepository.findAll();
+    public List<PersonPhone> getAll(Filter filter){
+        return personPhoneRepository.getAll(filter.limit, filter.offset);
     }
 
     @Override
-    public PersonPhone getById(String idOrPhoneNumber){
-
-
+    public PersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber){
         PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        //if(personPhone.isPresent()){
-         //   return personPhone.get();
-        //}
-        //else {
-         //   throw new ResourceNotFoundException("Person phone with id " + id + " is not found");
-        //}
+        return personPhone;
     }
 
     @Override
@@ -45,7 +38,7 @@ public class PersonPhoneService implements IPersonPhoneService {
         return personPhoneRepository.save(personPhone);
     }
 
-    //@Override
+    @Override
     public PersonPhone update(String idOrPhoneNumber, PersonPhone personPhoneRequest) {
         PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
         personPhone.setName(personPhoneRequest.getName());
@@ -62,14 +55,25 @@ public class PersonPhoneService implements IPersonPhoneService {
     }
 
     public PersonPhone getPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
-        PersonPhone personPhone;
+        Optional<PersonPhone> personPhone;
         if(idOrPhoneNumber.split("")[0].equals("+")) {
-            personPhone = personPhoneRepository.findByPhoneNumber(idOrPhoneNumber).orElseThrow(() -> new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found"));
+            personPhone = Optional.ofNullable(personPhoneRepository.findByPhoneNumber(idOrPhoneNumber));
+            if(personPhone.isPresent()){
+                return personPhone.get();
+            }
+            else {
+                throw new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found");
+            }
         }
         else {
-            personPhone = personPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber)).orElseThrow(() -> new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found"));
+            personPhone = personPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber));
+            if(personPhone.isPresent()) {
+                return personPhone.get();
+            }
+            else {
+                throw new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found");
+            }
         }
-        return personPhone;
     }
 
 }

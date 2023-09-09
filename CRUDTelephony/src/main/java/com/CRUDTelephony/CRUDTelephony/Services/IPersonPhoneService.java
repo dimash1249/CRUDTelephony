@@ -8,9 +8,8 @@ import java.util.List;
 
 @Service
 public interface IPersonPhoneService {
-    List<PersonPhone> getAll();
-    PersonPhone getById(int id);
-    PersonPhone getByPhone(String phoneNumber);
+    List<PersonPhone> getAll(Filter filter);
+    PersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber);
     PersonPhone create(PersonPhone personPhone);
     PersonPhone update(String idOrPhoneNumber, PersonPhone personPhone);
     void delete(String idOrPhoneNumber);
