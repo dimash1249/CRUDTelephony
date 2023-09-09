@@ -1,7 +1,7 @@
-package com.CRUDTelephony.Mappers;
+package com.CRUDTelephony.CRUDTelephony.Mappers;
 
-import com.CRUDTelephony.Dto.PersonPhoneDto;
-import com.CRUDTelephony.Models.PersonPhone;
+import com.CRUDTelephony.CRUDTelephony.Dto.PersonPhoneDto;
+import com.CRUDTelephony.CRUDTelephony.Models.PersonPhone;
 
 public class PersonPhoneMapper {
 

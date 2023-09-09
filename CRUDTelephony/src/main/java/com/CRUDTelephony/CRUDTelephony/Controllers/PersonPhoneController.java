@@ -1,10 +1,11 @@
-package com.CRUDTelephony.Controllers;
+package com.CRUDTelephony.CRUDTelephony.Controllers;
 
-import com.CRUDTelephony.Dto.PersonPhoneDto;
-import com.CRUDTelephony.Mappers.PersonPhoneMapper;
-import com.CRUDTelephony.Models.Filter;
-import com.CRUDTelephony.Models.PersonPhone;
-import com.CRUDTelephony.Services.PersonPhoneService;
+import com.CRUDTelephony.CRUDTelephony.Dto.PersonPhoneDto;
+import com.CRUDTelephony.CRUDTelephony.Mappers.PersonPhoneMapper;
+import com.CRUDTelephony.CRUDTelephony.Models.Filter;
+import com.CRUDTelephony.CRUDTelephony.Models.PersonPhone;
+import com.CRUDTelephony.CRUDTelephony.Services.PersonPhoneService;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +14,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/person-phones")
+@RequestMapping("")
 public class PersonPhoneController {
 
     private PersonPhoneService personPhoneService;
 
+    @Autowired
     public PersonPhoneController(PersonPhoneService personPhoneService) {
-        super();
         this.personPhoneService = personPhoneService;
     }
 
     @GetMapping
-    public List<PersonPhoneDto> getAllPersonPhones(Filter filter) {
+    public List<PersonPhoneDto> getAllPersonPhones() {
 
-        return personPhoneService.getAll(filter).stream().map(personPhone -> PersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
+        return personPhoneService.getAll().stream().map(personPhone -> PersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
     }
 
     @GetMapping("/{idOrPhoneNumber}")

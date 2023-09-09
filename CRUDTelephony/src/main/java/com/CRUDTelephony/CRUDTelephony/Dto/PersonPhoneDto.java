@@ -1,4 +1,4 @@
-package com.CRUDTelephony.Dto;
+package com.CRUDTelephony.CRUDTelephony.Dto;
 
 import lombok.Data;
 import lombok.Getter;

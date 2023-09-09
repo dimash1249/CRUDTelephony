@@ -1,25 +1,28 @@
-package com.CRUDTelephony.Services;
+package com.CRUDTelephony.CRUDTelephony.Services;
 
-import com.CRUDTelephony.Models.Filter;
-import com.CRUDTelephony.Models.PersonPhone;
-import com.CRUDTelephony.Repositories.PersonPhoneRepository;
+import com.CRUDTelephony.CRUDTelephony.Models.Filter;
+import com.CRUDTelephony.CRUDTelephony.Models.PersonPhone;
+import com.CRUDTelephony.CRUDTelephony.Repositories.PersonPhoneRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 @Service
 public class PersonPhoneService implements IPersonPhoneService {
 
     private final PersonPhoneRepository personPhoneRepository;
 
+    @Autowired
     public PersonPhoneService(PersonPhoneRepository personPhoneRepository){
-        super();
         this.personPhoneRepository = personPhoneRepository;
     }
 
     @Override
-    public List<PersonPhone> getAll(Filter filter){
+    public List<PersonPhone> getAll(){
         return personPhoneRepository.findAll();
     }
 

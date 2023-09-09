@@ -1,4 +1,4 @@
-package com.CRUDTelephony.Models;
+package com.CRUDTelephony.CRUDTelephony.Models;
 
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import java.util.Date;
 
 @Entity
-@Table(name = "PersonPhones")
+@Table(name = "person_phones")
 public class PersonPhone {
 
     @Id
