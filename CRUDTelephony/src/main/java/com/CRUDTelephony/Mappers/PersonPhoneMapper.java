@@ -18,7 +18,7 @@ public class PersonPhoneMapper {
     }
 
     public static PersonPhone mapToPersonPhone(PersonPhoneDto personPhoneDto) {
-        PersonPhone personPhone = new PersonPhone(
+        return new PersonPhone(
                 personPhoneDto.getId(),
                 personPhoneDto.getName(),
                 personPhoneDto.getBirthYear(),
@@ -26,6 +26,5 @@ public class PersonPhoneMapper {
                 personPhoneDto.getPhoneSecond(),
                 personPhoneDto.getCreationDate()
         );
-        return personPhone;
     }
 }

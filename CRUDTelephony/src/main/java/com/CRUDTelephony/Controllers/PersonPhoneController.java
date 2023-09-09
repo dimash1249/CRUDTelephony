@@ -52,7 +52,7 @@ public class PersonPhoneController {
     @PutMapping("/{id}")
     public ResponseEntity<PersonPhoneDto> updatePersonPhone(@PathVariable int id, @RequestBody PersonPhoneDto personPhoneDto) {
         PersonPhone personPhoneRequest = PersonPhoneMapper.mapToPersonPhone(personPhoneDto);
-        PersonPhone personPhone = personPhoneService.update(id, personPhoneRequest);
+        PersonPhone personPhone = personPhoneService.update("", personPhoneRequest);
         PersonPhoneDto personPhoneResponse = PersonPhoneMapper.mapToPersonPhoneDto(personPhone);
         return ResponseEntity.ok().body(personPhoneResponse);
     }

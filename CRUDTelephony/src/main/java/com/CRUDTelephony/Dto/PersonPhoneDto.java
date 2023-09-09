@@ -23,4 +23,28 @@ public class PersonPhoneDto {
         this.phoneSecond = phoneSecond;
         this.creationDate = creationDate;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBirthYear() {
+        return birthYear;
+    }
+
+    public String getPhoneFirst() {
+        return phoneFirst;
+    }
+
+    public String getPhoneSecond() {
+        return phoneSecond;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
 }
