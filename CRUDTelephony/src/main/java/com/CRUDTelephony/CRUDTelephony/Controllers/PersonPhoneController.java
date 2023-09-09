@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/person-phones")
 public class PersonPhoneController {
 
     private PersonPhoneService personPhoneService;

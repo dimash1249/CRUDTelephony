@@ -1,5 +1,6 @@
 package com.CRUDTelephony.CRUDTelephony.Services;
 
+import com.CRUDTelephony.CRUDTelephony.Exceptions.ResourceNotFoundException;
 import com.CRUDTelephony.CRUDTelephony.Models.Filter;
 import com.CRUDTelephony.CRUDTelephony.Models.PersonPhone;
 import com.CRUDTelephony.CRUDTelephony.Repositories.PersonPhoneRepository;
@@ -27,15 +28,16 @@ public class PersonPhoneService implements IPersonPhoneService {
     }
 
     @Override
-    public PersonPhone getById(int id){
-        Optional<PersonPhone> personPhone = personPhoneRepository.findById(id);
-        if(personPhone.isPresent()){
-            return personPhone.get();
-        }
-        else {
-            //throw new ResourceNotFoundException("PersonPhone", "id", id);
-        }
-        return new PersonPhone();
+    public PersonPhone getById(String idOrPhoneNumber){
+
+
+        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
+        //if(personPhone.isPresent()){
+         //   return personPhone.get();
+        //}
+        //else {
+         //   throw new ResourceNotFoundException("Person phone with id " + id + " is not found");
+        //}
     }
 
     @Override
@@ -44,17 +46,30 @@ public class PersonPhoneService implements IPersonPhoneService {
     }
 
     //@Override
-    public PersonPhone update(String idOrPhoneNumber, PersonPhone personPhone) {
-
-        //if(idOrPhoneNumber.split("")[0].equals("+")) {
-//
-        //}
-        return new PersonPhone();
+    public PersonPhone update(String idOrPhoneNumber, PersonPhone personPhoneRequest) {
+        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
+        personPhone.setName(personPhoneRequest.getName());
+        personPhone.setBirthYear(personPhoneRequest.getBirthYear());
+        personPhone.setPhoneFirst(personPhoneRequest.getPhoneFirst());
+        personPhone.setPhoneSecond(personPhoneRequest.getPhoneSecond());
+        return personPhoneRepository.save(personPhone);
     }
 
-    //@Override
-    public void delete(int id){
-        //PersonPhone personPhone = personPhoneRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("PersonPhone", "id", id));
-        //personPhoneRepository.delete(personPhone);
+    @Override
+    public void delete(String idOrPhoneNumber){
+        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
+        personPhoneRepository.delete(personPhone);
     }
+
+    public PersonPhone getPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
+        PersonPhone personPhone;
+        if(idOrPhoneNumber.split("")[0].equals("+")) {
+            personPhone = personPhoneRepository.findByPhoneNumber(idOrPhoneNumber).orElseThrow(() -> new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found"));
+        }
+        else {
+            personPhone = personPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber)).orElseThrow(() -> new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found"));
+        }
+        return personPhone;
+    }
+
 }
