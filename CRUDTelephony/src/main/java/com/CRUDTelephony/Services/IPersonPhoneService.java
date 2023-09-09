@@ -1,5 +1,6 @@
 package com.CRUDTelephony.Services;
 
+import com.CRUDTelephony.Models.Filter;
 import com.CRUDTelephony.Models.PersonPhone;
 
 import java.util.List;

@@ -30,8 +30,9 @@ public class PersonPhoneService implements IPersonPhoneService {
             return personPhone.get();
         }
         else {
-            throw new ResourceNotFoundException("PersonPhone", "id", id);
+            //throw new ResourceNotFoundException("PersonPhone", "id", id);
         }
+        return new PersonPhone();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class PersonPhoneService implements IPersonPhoneService {
         return personPhoneRepository.save(personPhone);
     }
 
-    @Override
+    //@Override
     public PersonPhone update(String idOrPhoneNumber, PersonPhone personPhone) {
 
         //if(idOrPhoneNumber.split("")[0].equals("+")) {
@@ -48,9 +49,9 @@ public class PersonPhoneService implements IPersonPhoneService {
         return new PersonPhone();
     }
 
-    @Override
+    //@Override
     public void delete(int id){
-        PersonPhone personPhone = personPhoneRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("PersonPhone", "id", id));
-        personPhoneRepository.delete(personPhone);
+        //PersonPhone personPhone = personPhoneRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("PersonPhone", "id", id));
+        //personPhoneRepository.delete(personPhone);
     }
 }

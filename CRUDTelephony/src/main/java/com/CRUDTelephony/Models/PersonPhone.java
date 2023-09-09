@@ -26,7 +26,7 @@ public class PersonPhone {
     @Column(name = "person_phone_second")
     private String phoneSecond;
 
-    @Column(name = "Person_creation_date")
+    @Column(name = "person_creation_date")
     private Date creationDate;
 
     public PersonPhone(){
@@ -34,6 +34,15 @@ public class PersonPhone {
     }
 
     public PersonPhone(String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+        this.name = name;
+        this.birthYear = birthYear;
+        this.phoneFirst = phoneFirst;
+        this.phoneSecond = phoneSecond;
+        this.creationDate = creationDate;
+    }
+
+    public PersonPhone(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+        this.id = id;
         this.name = name;
         this.birthYear = birthYear;
         this.phoneFirst = phoneFirst;
