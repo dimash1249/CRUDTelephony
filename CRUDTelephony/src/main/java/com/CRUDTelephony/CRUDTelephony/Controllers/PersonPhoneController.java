@@ -24,19 +24,22 @@ public class PersonPhoneController {
         this.personPhoneService = personPhoneService;
     }
 
-    @GetMapping
-    public List<PersonPhoneDto> getAllPersonPhones(@RequestParam Filter filter) {
+    @GetMapping("/list")
+    public List<PersonPhoneDto> getAllPersonPhones(@RequestBody Filter filter) {
 
         return personPhoneService.getAll(filter).stream().map(personPhone -> PersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
     }
 
-    @GetMapping("/{id}")
-    public String getByIdOrPhoneNumber(@PathVariable(name = "id") String id) {
-        //PersonPhone personPhone = personPhoneService.getByIdOrPhoneNumber(id);
+    @GetMapping("/byId/{id}")
+    public ResponseEntity<PersonPhoneDto> getById(@PathVariable(name = "id") String id) {
+        PersonPhone personPhone = personPhoneService.getByIdOrPhoneNumber(id);
+        PersonPhoneDto responsePersonPhone = PersonPhoneMapper.mapToPersonPhoneDto(personPhone);
+        return ResponseEntity.ok().body(responsePersonPhone);
+    }
 
-        //PersonPhoneDto responsePersonPhone = PersonPhoneMapper.mapToPersonPhoneDto(personPhone);
-
-        return "ok";//;ResponseEntity.ok().body("ok");//responsePersonPhone);
+    @GetMapping("/byPhoneNumber/{phoneNumber}")
+    public String getByPhoneNumber(@PathVariable(name = "phoneNumber") String phoneNumber) {
+        return phoneNumber;
     }
 
     @PostMapping

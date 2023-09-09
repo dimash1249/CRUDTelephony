@@ -29,8 +29,21 @@ public class PersonPhoneService implements IPersonPhoneService {
 
     @Override
     public PersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber){
-        PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        return personPhone;
+        Optional<PersonPhone> personPhone = personPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber));
+        if(personPhone.isPresent()) {
+            return personPhone.get();
+        }
+        else {
+            PersonPhone personPhonePhone = personPhoneRepository.findByPhoneNumber(idOrPhoneNumber);
+            if(personPhonePhone != null) {
+                return personPhonePhone;
+            }
+            else {
+                throw new ResourceNotFoundException("Error");
+            }
+        }
+        //PersonPhone personPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
+        //return personPhone;
     }
 
     @Override
@@ -56,10 +69,11 @@ public class PersonPhoneService implements IPersonPhoneService {
 
     public PersonPhone getPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
         Optional<PersonPhone> personPhone;
-        if(idOrPhoneNumber.split("")[0].equals("+")) {
-            personPhone = Optional.ofNullable(personPhoneRepository.findByPhoneNumber(idOrPhoneNumber));
-            if(personPhone.isPresent()){
-                return personPhone.get();
+        char[] mas = idOrPhoneNumber.toCharArray();
+        if(mas[0] == '+') {
+            PersonPhone personPhoneid = personPhoneRepository.findByPhoneNumber(idOrPhoneNumber);
+            if(personPhoneid != null){
+                return personPhoneid;
             }
             else {
                 throw new ResourceNotFoundException("Person phone with id or phone number " + idOrPhoneNumber + " is not found");
