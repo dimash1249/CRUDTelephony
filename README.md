@@ -1,4 +1,4 @@
-# Tools and Technologies
+# 1. Tools and Technologies
 * IntelliJ IDEA 2023.1.3
 * pgAdmin 4 6.12
 * Postman 10.17.7
@@ -8,7 +8,7 @@
 * Gradle 8.3
 * PostgreSQL 14
 
-# How to set up or start project?
+# 2. How to set up or start project?
 To start the project, you need to run the command using Git 
 ```git clone https://github.com/dimash1249/CRUDTelephony.git```
 After cloning the repository, you need to open the folder in the IDE, for me this is IntelliJ IDEA. 
@@ -25,7 +25,7 @@ Next, you will need to go to the web browser and enter the URL ```http://localho
 
 For more detailed testing of the application, you need to use Postman. To do this, open HTTP requests saved in . 
 
-# Methods in controllers
+# 3. Methods in controllers
 The application works with two PostgreSQL and MongoDB databases. Two controllers are implemented for correct operation:
 * PostgreSQLPersonPhoneConntroller. The controller implements such methods:
   - ```public List<PostgreSQLPersonPhoneDto> getAllPersonPhones(@RequestBody Filter filter) { }```;
@@ -46,6 +46,22 @@ The application works with two PostgreSQL and MongoDB databases. Two controllers
   - ```public ResponseEntity<String> delete(@PathVariable String id) ```.
     - Accepts ```id``` or ```phone number``` as a parameter.
 
-# HTTP requests in Postman
+# 4. HTTP requests in Postman
+I used Postman to test the application. The file ```https://github.com/dimash1249/CRUDTelephony/blob/master/CRUDTelephony.postman_collection.json``` contains all requests for all controller methods (header 3). To check, you need to import the file into the postman. Launch the application. And send requests from the file to the postman.
 
+---
+For example, we want to get all the lines with phone numbers. 
+![image](https://github.com/dimash1249/CRUDTelephony/assets/86044980/c1acdee9-d4bc-4132-93b7-974e8f898db0)
+To do this, we need the method ```getAllPersonPhones``` specified in heading 3. Go to the postman. The name of the requests such as the names of the controller methods. That is, we need a method ```getAllPersonPhones```. Since the method takes an object of ```Filter``` class as a parameter, we need to specify in the body in json format an object of the filter class or attributes of the filter class.
 
+# 5. Testing and other
+Testing the application is very important, because with the help of testing there are errors and bugs. I have implemented a test for the method ```getByIdOrPhoneNumber```. 
+![image](https://github.com/dimash1249/CRUDTelephony/assets/86044980/384f7a84-ac8a-4be6-a438-4b2adfc21af8)
+To run the tests, you need to go to java class ```https://github.com/dimash1249/CRUDTelephony/blob/master/CRUDTelephony/src/test/java/com/CRUDTelephony/CRUDTelephony/CrudTelephonyApplicationTests.java``` and start by clicking on the green triangle. Next, the output shows which tests passed and which did not.
+
+## Other
+For postgresql, I use the default postgres database. Username postgres, password 1249SeMa.    
+There were problems with the data seeding into the database, but the problem seems to be solved. You may need to configure a tomcat, but jar file has a built-in tomcat (maybe, I have an application running, HTTP 200 ok).     
+PostgreSQL Table name 'person_phones'. Name of columns are respresented in models package.    
+MongoDB Table name 'PersonPhones'. Name of columns are represented in models package.      
+If you have any questions or errors, write to the mail @nogaybaevd11@list.ru
