@@ -11,7 +11,7 @@ import java.util.List;
 public interface IMongoDBPersonPhoneService {
     List<MongoDBPersonPhone> getAll(Filter filter);
     MongoDBPersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber);
-    //    PersonPhone create(PersonPhone personPhone);
+    MongoDBPersonPhone create(MongoDBPersonPhone personPhone);
     MongoDBPersonPhone update(String idOrPhoneNumber, MongoDBPersonPhone mongoDBPersonPhone);
     void delete(String id);
 }

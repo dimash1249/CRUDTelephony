@@ -37,16 +37,22 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
     }
 
     @Override
+    public MongoDBPersonPhone create(MongoDBPersonPhone mongoDBPersonPhone) {
+        return mongoDBPersonPhoneRepository.save(mongoDBPersonPhone);
+    }
+    @Override
     public MongoDBPersonPhone update(String idOrPhoneNumber, MongoDBPersonPhone mongoDBPersonPhoneRequest) {
-
         MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
         mongoDBPersonPhone.setName(mongoDBPersonPhoneRequest.getName());
+        mongoDBPersonPhone.setBirthYear(mongoDBPersonPhone.getBirthYear());
+        mongoDBPersonPhone.setPhoneFirst(mongoDBPersonPhone.getPhoneFirst());
+        mongoDBPersonPhone.setPhoneSecond(mongoDBPersonPhone.getPhoneSecond());
         return mongoDBPersonPhone;
     }
 
     @Override
     public void delete(String id) {
-
+        MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(id);
     }
 
     public MongoDBPersonPhone getMongoDBPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {

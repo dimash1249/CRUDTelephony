@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface MongoDBPersonPhoneRepository extends MongoRepository<MongoDBPersonPhone, Integer> {
 
-    @Aggregation(pipeline = {"{ '$skip':  ?2}", "{ '$limit':  ?1}"})
+    @Aggregation(pipeline = {"{ '$skip':  ?1}", "{ '$limit':  ?0}"})
     List<MongoDBPersonPhone> getAll(int limit, int offset);
     MongoDBPersonPhone findByPhoneFirst(String phoneFirst);
     MongoDBPersonPhone findByPhoneSecond(String phoneSecond);

@@ -8,7 +8,7 @@ import java.util.Date;
 @Document(collection = "PersonPhones")
 public class MongoDBPersonPhone {
     @Id
-    private int id;
+    private String id;
     private String name;
     private int birthYear;
     private String phoneFirst;
@@ -18,7 +18,7 @@ public class MongoDBPersonPhone {
     public MongoDBPersonPhone() {
     }
 
-    public MongoDBPersonPhone(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+    public MongoDBPersonPhone(String id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;
         this.birthYear = birthYear;
@@ -27,11 +27,11 @@ public class MongoDBPersonPhone {
         this.creationDate = creationDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
