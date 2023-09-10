@@ -32,14 +32,6 @@ public class PostgreSQLPersonPhone {
 
     }
 
-    public PostgreSQLPersonPhone(String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
-        this.name = name;
-        this.birthYear = birthYear;
-        this.phoneFirst = phoneFirst;
-        this.phoneSecond = phoneSecond;
-        this.creationDate = creationDate;
-    }
-
     public PostgreSQLPersonPhone(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;

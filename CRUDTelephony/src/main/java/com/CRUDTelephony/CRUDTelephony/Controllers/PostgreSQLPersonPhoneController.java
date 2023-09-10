@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.CRUDTelephony.CRUDTelephony.Mappers.PostgreSQLPersonPhoneMapper.*;
+
 @RestController
 @RequestMapping("/api/person-phones")
 public class PostgreSQLPersonPhoneController {
 
-    private PostgreSQLPersonPhoneService personPhoneService;
+    private final PostgreSQLPersonPhoneService personPhoneService;
 
     @Autowired
     public PostgreSQLPersonPhoneController(PostgreSQLPersonPhoneService personPhoneService) {
@@ -26,13 +28,13 @@ public class PostgreSQLPersonPhoneController {
 
     @GetMapping("/list")
     public List<PostgreSQLPersonPhoneDto> getAllPersonPhones(@RequestBody Filter filter) {
-        return personPhoneService.getAll(filter).stream().map(personPhone -> PostgreSQLPersonPhoneMapper.mapToPersonPhoneDto(personPhone)).collect(Collectors.toList());
+        return personPhoneService.getAll(filter).stream().map(PostgreSQLPersonPhoneMapper::mapToPersonPhoneDto).collect(Collectors.toList());
     }
 
     @GetMapping("/by-id-or-phone-number/{id}")
     public ResponseEntity<PostgreSQLPersonPhoneDto> getByIdOrPhoneNumber(@PathVariable(name = "id") String idOrPhoneNumber) {
         PostgreSQLPersonPhone postgreSQLPersonPhone = personPhoneService.getByIdOrPhoneNumber(idOrPhoneNumber);
-        PostgreSQLPersonPhoneDto responsePersonPhone = PostgreSQLPersonPhoneMapper.mapToPersonPhoneDto(postgreSQLPersonPhone);
+        PostgreSQLPersonPhoneDto responsePersonPhone = mapToPersonPhoneDto(postgreSQLPersonPhone);
         return ResponseEntity.ok().body(responsePersonPhone);
     }
 
@@ -46,9 +48,9 @@ public class PostgreSQLPersonPhoneController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PostgreSQLPersonPhoneDto> updatePersonPhone(@PathVariable String id, @RequestBody PostgreSQLPersonPhoneDto postgreSQLPersonPhoneDto) {
-        PostgreSQLPersonPhone postgreSQLPersonPhoneRequest = PostgreSQLPersonPhoneMapper.mapToPersonPhone(postgreSQLPersonPhoneDto);
+        PostgreSQLPersonPhone postgreSQLPersonPhoneRequest = mapToPersonPhone(postgreSQLPersonPhoneDto);
         PostgreSQLPersonPhone postgreSQLPersonPhone = personPhoneService.update(id, postgreSQLPersonPhoneRequest);
-        PostgreSQLPersonPhoneDto personPhoneResponse = PostgreSQLPersonPhoneMapper.mapToPersonPhoneDto(postgreSQLPersonPhone);
+        PostgreSQLPersonPhoneDto personPhoneResponse = mapToPersonPhoneDto(postgreSQLPersonPhone);
         return ResponseEntity.ok().body(personPhoneResponse);
     }
 

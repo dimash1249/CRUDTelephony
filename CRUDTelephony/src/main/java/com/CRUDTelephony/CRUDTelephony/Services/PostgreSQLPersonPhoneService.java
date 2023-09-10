@@ -29,8 +29,7 @@ public class PostgreSQLPersonPhoneService implements IPostgreSQLPersonPhoneServi
 
     @Override
     public PostgreSQLPersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber){
-        PostgreSQLPersonPhone postgreSQLPersonPhone = getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        return postgreSQLPersonPhone;
+        return getPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
     }
 
 //    @Override

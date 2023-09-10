@@ -13,7 +13,5 @@ public interface MongoDBPersonPhoneRepository extends MongoRepository<MongoDBPer
     @Aggregation(pipeline = {"{ '$skip':  ?1}", "{ '$limit':  ?0}"})
     List<MongoDBPersonPhone> getAll(int limit, int offset);
     @Aggregation(pipeline = {"{ '$limit':  1}"})
-//    List<MongoDBPersonPhone> findAllByPhoneFirst(String phoneFirst);
-//    List<MongoDBPersonPhone> findAllByPhoneSecond(String phoneSecond);
     MongoDBPersonPhone findAllByPhoneFirstOrPhoneSecond(String phoneNumber);
 }

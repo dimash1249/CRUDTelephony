@@ -13,9 +13,6 @@ public class MongoDBPersonPhoneDto {
     private String phoneSecond;
     private Date creationDate;
 
-    public MongoDBPersonPhoneDto() {
-    }
-
     public MongoDBPersonPhoneDto(String id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;

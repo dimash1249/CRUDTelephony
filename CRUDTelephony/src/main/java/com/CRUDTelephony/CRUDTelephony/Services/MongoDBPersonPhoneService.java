@@ -1,10 +1,8 @@
 package com.CRUDTelephony.CRUDTelephony.Services;
 
-import com.CRUDTelephony.CRUDTelephony.Controllers.MongoDBPersonPhoneController;
 import com.CRUDTelephony.CRUDTelephony.Exceptions.ResourceNotFoundException;
 import com.CRUDTelephony.CRUDTelephony.Models.Filter;
 import com.CRUDTelephony.CRUDTelephony.Models.MongoDBPersonPhone;
-import com.CRUDTelephony.CRUDTelephony.Models.PostgreSQLPersonPhone;
 import com.CRUDTelephony.CRUDTelephony.Repositories.MongoDBPersonPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,14 +30,14 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
 
     @Override
     public MongoDBPersonPhone getByIdOrPhoneNumber(String idOrPhoneNumber) {
-        MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
-        return mongoDBPersonPhone;
+        return getMongoDBPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
     }
 
-    @Override
-    public MongoDBPersonPhone create(MongoDBPersonPhone mongoDBPersonPhone) {
-        return mongoDBPersonPhoneRepository.save(mongoDBPersonPhone);
-    }
+//    @Override
+//    public MongoDBPersonPhone create(MongoDBPersonPhone mongoDBPersonPhone) {
+//        return mongoDBPersonPhoneRepository.save(mongoDBPersonPhone);
+//    }
+
     @Override
     public MongoDBPersonPhone update(String idOrPhoneNumber, MongoDBPersonPhone mongoDBPersonPhoneRequest) {
         MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
@@ -64,20 +62,8 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
     public MongoDBPersonPhone getMongoDBPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
         char[] mas = idOrPhoneNumber.toCharArray();
         if(mas[0] == '+') {
-            MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneRepository.findAllByPhoneFirstOrPhoneSecond(idOrPhoneNumber);
-//            if(mongoDBPersonPhone != null) {
-                return mongoDBPersonPhone;
-            }
-//            else {
-//                MongoDBPersonPhone mongoDBPersonPhoneSecond = mongoDBPersonPhoneRepository.findAllByPhoneSecond(idOrPhoneNumber);
-//                if(mongoDBPersonPhoneSecond != null) {
-//                    return mongoDBPersonPhoneSecond;
-//                }
-//                else {
-//                    throw new ResourceNotFoundException("Error");
-//                }
-//            }
-//        }
+            return mongoDBPersonPhoneRepository.findAllByPhoneFirstOrPhoneSecond(idOrPhoneNumber);
+        }
         else {
             Optional<MongoDBPersonPhone> mongoDBPersonPhone = mongoDBPersonPhoneRepository.findById(idOrPhoneNumber);
             if(mongoDBPersonPhone.isPresent()) {

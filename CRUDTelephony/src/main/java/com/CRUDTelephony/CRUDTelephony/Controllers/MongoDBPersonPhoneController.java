@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.CRUDTelephony.CRUDTelephony.Mappers.MongoDBPersonPhoneMapper.*;
+
 @RestController
 @RequestMapping("/api/mongodb")
 public class MongoDBPersonPhoneController {
 
-    private MongoDBPersonPhoneService mongoDBPersonPhoneService;
+    private final MongoDBPersonPhoneService mongoDBPersonPhoneService;
 
     @Autowired
     public MongoDBPersonPhoneController(MongoDBPersonPhoneService mongoDBPersonPhoneService1) {
@@ -26,27 +28,27 @@ public class MongoDBPersonPhoneController {
 
     @GetMapping
     public List<MongoDBPersonPhoneDto> getAll(@RequestBody Filter filter) {
-        return mongoDBPersonPhoneService.getAll(filter).stream().map(mongoDBPersonPhone -> MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone)).collect(Collectors.toList());
+        return mongoDBPersonPhoneService.getAll(filter).stream().map(MongoDBPersonPhoneMapper::mapToPersonPhoneDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MongoDBPersonPhoneDto> getByIdOrPhoneNumber(@PathVariable(name = "id") String id) {
         MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneService.getByIdOrPhoneNumber(id);
-        MongoDBPersonPhoneDto mongoDBPersonPhoneDto = MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone);
+        MongoDBPersonPhoneDto mongoDBPersonPhoneDto = mapToPersonPhoneDto(mongoDBPersonPhone);
         return ResponseEntity.ok().body(mongoDBPersonPhoneDto);
     }
 
-    @PostMapping
-    public ResponseEntity<MongoDBPersonPhoneDto> create(@RequestBody MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
-        MongoDBPersonPhone mongoDBPersonPhone = MongoDBPersonPhoneMapper.mapToPersonPhone(mongoDBPersonPhoneDto);
-        return ResponseEntity.ok().body(MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhoneService.create(mongoDBPersonPhone)));
-    }
+//    @PostMapping
+//    public ResponseEntity<MongoDBPersonPhoneDto> create(@RequestBody MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
+//        MongoDBPersonPhone mongoDBPersonPhone = mapToPersonPhone(mongoDBPersonPhoneDto);
+//        return ResponseEntity.ok().body(mapToPersonPhoneDto(mongoDBPersonPhoneService.create(mongoDBPersonPhone)));
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<MongoDBPersonPhoneDto> update(@PathVariable String id, @RequestBody MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
-        MongoDBPersonPhone mongoDBPersonPhoneRequest = MongoDBPersonPhoneMapper.mapToPersonPhone(mongoDBPersonPhoneDto);
+        MongoDBPersonPhone mongoDBPersonPhoneRequest = mapToPersonPhone(mongoDBPersonPhoneDto);
         MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneService.update(id, mongoDBPersonPhoneRequest);
-        MongoDBPersonPhoneDto mongoDBPersonPhoneResponse = MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone);
+        MongoDBPersonPhoneDto mongoDBPersonPhoneResponse = mapToPersonPhoneDto(mongoDBPersonPhone);
         return ResponseEntity.ok().body(mongoDBPersonPhoneResponse);
     }
 
