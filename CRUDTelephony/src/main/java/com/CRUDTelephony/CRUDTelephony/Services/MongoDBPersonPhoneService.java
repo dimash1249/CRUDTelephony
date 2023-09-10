@@ -53,6 +53,12 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
     @Override
     public void delete(String id) {
         MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(id);
+        if(mongoDBPersonPhone != null) {
+            mongoDBPersonPhoneRepository.delete(mongoDBPersonPhone);
+        }
+        else {
+            throw new ResourceNotFoundException("Error");
+        }
     }
 
     public MongoDBPersonPhone getMongoDBPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {

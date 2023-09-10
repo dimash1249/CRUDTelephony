@@ -6,18 +6,30 @@ import java.util.Date;
 
 @Data
 public class MongoDBPersonPhoneDto {
-    private int id;
+    private String id;
     private String name;
     private int birthYear;
     private String phoneFirst;
     private String phoneSecond;
     private Date creationDate;
 
-    public int getId() {
+    public MongoDBPersonPhoneDto() {
+    }
+
+    public MongoDBPersonPhoneDto(String id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+        this.id = id;
+        this.name = name;
+        this.birthYear = birthYear;
+        this.phoneFirst = phoneFirst;
+        this.phoneSecond = phoneSecond;
+        this.creationDate = creationDate;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

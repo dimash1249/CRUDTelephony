@@ -6,7 +6,7 @@ import com.CRUDTelephony.CRUDTelephony.Models.PostgreSQLPersonPhone;
 public class PostgreSQLPersonPhoneMapper {
 
     public static PostgreSQLPersonPhoneDto mapToPersonPhoneDto(PostgreSQLPersonPhone postgreSQLPersonPhone) {
-        PostgreSQLPersonPhoneDto postgreSQLPersonPhoneDto = new PostgreSQLPersonPhoneDto(
+        return new PostgreSQLPersonPhoneDto(
                 postgreSQLPersonPhone.getId(),
                 postgreSQLPersonPhone.getName(),
                 postgreSQLPersonPhone.getBirthYear(),
@@ -14,7 +14,6 @@ public class PostgreSQLPersonPhoneMapper {
                 postgreSQLPersonPhone.getPhoneSecond(),
                 postgreSQLPersonPhone.getCreationDate()
         );
-        return postgreSQLPersonPhoneDto;
     }
 
     public static PostgreSQLPersonPhone mapToPersonPhone(PostgreSQLPersonPhoneDto postgreSQLPersonPhoneDto) {
