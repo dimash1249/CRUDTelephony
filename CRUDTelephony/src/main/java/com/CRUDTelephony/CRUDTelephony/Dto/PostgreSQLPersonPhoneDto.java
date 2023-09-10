@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class PersonPhoneDto {
+public class PostgreSQLPersonPhoneDto {
     private int id;
     private String name;
     private int birthYear;
@@ -13,7 +13,7 @@ public class PersonPhoneDto {
     private String phoneSecond;
     private Date creationDate;
 
-    public PersonPhoneDto(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+    public PostgreSQLPersonPhoneDto(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;
         this.birthYear = birthYear;

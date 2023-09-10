@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "person_phones")
-public class PersonPhone {
+public class PostgreSQLPersonPhone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class PersonPhone {
     @Column(name = "person_creation_date")
     private Date creationDate;
 
-    public PersonPhone(){
+    public PostgreSQLPersonPhone(){
 
     }
 
-    public PersonPhone(String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+    public PostgreSQLPersonPhone(String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.name = name;
         this.birthYear = birthYear;
         this.phoneFirst = phoneFirst;
@@ -40,7 +40,7 @@ public class PersonPhone {
         this.creationDate = creationDate;
     }
 
-    public PersonPhone(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
+    public PostgreSQLPersonPhone(int id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;
         this.birthYear = birthYear;
