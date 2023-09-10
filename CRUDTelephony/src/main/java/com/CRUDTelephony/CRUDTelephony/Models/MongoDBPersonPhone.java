@@ -1,6 +1,8 @@
 package com.CRUDTelephony.CRUDTelephony.Models;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.UniqueConstraint;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -11,7 +13,9 @@ public class MongoDBPersonPhone {
     private String id;
     private String name;
     private int birthYear;
+    @Indexed(unique = true)
     private String phoneFirst;
+    @Indexed(unique = true)
     private String phoneSecond;
     private Date creationDate;
 

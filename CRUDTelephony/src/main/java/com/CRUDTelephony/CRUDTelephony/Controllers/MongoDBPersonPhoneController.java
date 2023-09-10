@@ -29,6 +29,13 @@ public class MongoDBPersonPhoneController {
         return mongoDBPersonPhoneService.getAll(filter).stream().map(mongoDBPersonPhone -> MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone)).collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<MongoDBPersonPhoneDto> getByIdOrPhoneNumber(@PathVariable(name = "id") String id) {
+        MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneService.getByIdOrPhoneNumber(id);
+        MongoDBPersonPhoneDto mongoDBPersonPhoneDto = MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone);
+        return ResponseEntity.ok().body(mongoDBPersonPhoneDto);
+    }
+
     @PostMapping
     public ResponseEntity<MongoDBPersonPhoneDto> create(@RequestBody MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
         MongoDBPersonPhone mongoDBPersonPhone = MongoDBPersonPhoneMapper.mapToPersonPhone(mongoDBPersonPhoneDto);
@@ -36,7 +43,7 @@ public class MongoDBPersonPhoneController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MongoDBPersonPhoneDto> update(@PathVariable String id, MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
+    public ResponseEntity<MongoDBPersonPhoneDto> update(@PathVariable String id, @RequestBody MongoDBPersonPhoneDto mongoDBPersonPhoneDto) {
         MongoDBPersonPhone mongoDBPersonPhoneRequest = MongoDBPersonPhoneMapper.mapToPersonPhone(mongoDBPersonPhoneDto);
         MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneService.update(id, mongoDBPersonPhoneRequest);
         MongoDBPersonPhoneDto mongoDBPersonPhoneResponse = MongoDBPersonPhoneMapper.mapToPersonPhoneDto(mongoDBPersonPhone);

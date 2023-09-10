@@ -44,10 +44,10 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
     public MongoDBPersonPhone update(String idOrPhoneNumber, MongoDBPersonPhone mongoDBPersonPhoneRequest) {
         MongoDBPersonPhone mongoDBPersonPhone = getMongoDBPersonPhoneByIdOrPhoneNumber(idOrPhoneNumber);
         mongoDBPersonPhone.setName(mongoDBPersonPhoneRequest.getName());
-        mongoDBPersonPhone.setBirthYear(mongoDBPersonPhone.getBirthYear());
-        mongoDBPersonPhone.setPhoneFirst(mongoDBPersonPhone.getPhoneFirst());
-        mongoDBPersonPhone.setPhoneSecond(mongoDBPersonPhone.getPhoneSecond());
-        return mongoDBPersonPhone;
+        mongoDBPersonPhone.setBirthYear(mongoDBPersonPhoneRequest.getBirthYear());
+        mongoDBPersonPhone.setPhoneFirst(mongoDBPersonPhoneRequest.getPhoneFirst());
+        mongoDBPersonPhone.setPhoneSecond(mongoDBPersonPhoneRequest.getPhoneSecond());
+        return mongoDBPersonPhoneRepository.save(mongoDBPersonPhone);
     }
 
     @Override
@@ -64,22 +64,22 @@ public class MongoDBPersonPhoneService implements IMongoDBPersonPhoneService {
     public MongoDBPersonPhone getMongoDBPersonPhoneByIdOrPhoneNumber(String idOrPhoneNumber) {
         char[] mas = idOrPhoneNumber.toCharArray();
         if(mas[0] == '+') {
-            MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneRepository.findByPhoneFirst(idOrPhoneNumber);
-            if(mongoDBPersonPhone != null) {
+            MongoDBPersonPhone mongoDBPersonPhone = mongoDBPersonPhoneRepository.findAllByPhoneFirstOrPhoneSecond(idOrPhoneNumber);
+//            if(mongoDBPersonPhone != null) {
                 return mongoDBPersonPhone;
             }
-            else {
-                MongoDBPersonPhone mongoDBPersonPhoneSecond = mongoDBPersonPhoneRepository.findByPhoneSecond(idOrPhoneNumber);
-                if(mongoDBPersonPhoneSecond != null) {
-                    return mongoDBPersonPhoneSecond;
-                }
-                else {
-                    throw new ResourceNotFoundException("Error");
-                }
-            }
-        }
+//            else {
+//                MongoDBPersonPhone mongoDBPersonPhoneSecond = mongoDBPersonPhoneRepository.findAllByPhoneSecond(idOrPhoneNumber);
+//                if(mongoDBPersonPhoneSecond != null) {
+//                    return mongoDBPersonPhoneSecond;
+//                }
+//                else {
+//                    throw new ResourceNotFoundException("Error");
+//                }
+//            }
+//        }
         else {
-            Optional<MongoDBPersonPhone> mongoDBPersonPhone = mongoDBPersonPhoneRepository.findById(Integer.parseInt(idOrPhoneNumber));
+            Optional<MongoDBPersonPhone> mongoDBPersonPhone = mongoDBPersonPhoneRepository.findById(idOrPhoneNumber);
             if(mongoDBPersonPhone.isPresent()) {
                 return mongoDBPersonPhone.get();
             }

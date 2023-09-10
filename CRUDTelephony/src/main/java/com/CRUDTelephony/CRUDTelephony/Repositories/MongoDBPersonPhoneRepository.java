@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MongoDBPersonPhoneRepository extends MongoRepository<MongoDBPersonPhone, Integer> {
+public interface MongoDBPersonPhoneRepository extends MongoRepository<MongoDBPersonPhone, String> {
 
     @Aggregation(pipeline = {"{ '$skip':  ?1}", "{ '$limit':  ?0}"})
     List<MongoDBPersonPhone> getAll(int limit, int offset);
-    MongoDBPersonPhone findByPhoneFirst(String phoneFirst);
-    MongoDBPersonPhone findByPhoneSecond(String phoneSecond);
+    @Aggregation(pipeline = {"{ '$limit':  1}"})
+//    List<MongoDBPersonPhone> findAllByPhoneFirst(String phoneFirst);
+//    List<MongoDBPersonPhone> findAllByPhoneSecond(String phoneSecond);
+    MongoDBPersonPhone findAllByPhoneFirstOrPhoneSecond(String phoneNumber);
 }
