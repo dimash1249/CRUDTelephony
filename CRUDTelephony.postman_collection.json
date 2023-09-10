@@ -1,0 +1,375 @@
+{
+	"info": {
+		"_postman_id": "45c7058c-3bfc-478b-b720-277a0ae53364",
+		"name": "CRUDTelephony",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16489852"
+	},
+	"item": [
+		{
+			"name": "PostgreSQL",
+			"item": [
+				{
+					"name": "getAllPersonPhones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\": 3,\r\n    \"offset\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdOrPhoneNumber (id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/by-id-or-phone-number/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"by-id-or-phone-number",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdOrPhoneNumber (phoneNumber)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/by-id-or-phone-number/+77473334215",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"by-id-or-phone-number",
+								"+77473334215"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePersonPhone (id)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dimash1\",\r\n    \"birthYear\": 2001,\r\n    \"phoneFirst\": \"+77473334215\",\r\n    \"phoneSecond\": \"+77473334\",\r\n    \"creationDate\": \"2023-09-10T18:54:56.002+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePersonPhone (phoneNumber)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dimash1\",\r\n    \"birthYear\": 2001,\r\n    \"phoneFirst\": \"+77473334215\",\r\n    \"phoneSecond\": \"+77473334212\",\r\n    \"creationDate\": \"2023-09-10T18:54:56.002+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/+77473334215",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"+77473334215"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePersonPhone (id)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePersonPhone (phoneNumber)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/person-phones/+77473334220",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person-phones",
+								"+77473334220"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MongoDB",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\": 3,\r\n    \"offset\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdOrPhoneNumber (id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/64fe10649bc83e251a0d96e9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"64fe10649bc83e251a0d96e9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByIdOrPhoneNumber (phoneNumber)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/+77473334215",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"+77473334215"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update (id)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dimash1\",\r\n    \"birthYear\": 2001,\r\n    \"phoneFirst\": \"+77473334215\",\r\n    \"phoneSecond\": \"+77473334200\",\r\n    \"creationDate\": \"2023-09-10T19:14:02.296+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/64fe157a028fb90b5d6e3b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"64fe157a028fb90b5d6e3b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update (phoneNumber)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dimash1\",\r\n    \"birthYear\": 2001,\r\n    \"phoneFirst\": \"+77473334215\",\r\n    \"phoneSecond\": \"+77473334215\",\r\n    \"creationDate\": \"2023-09-10T19:14:02.296+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/+77473334215",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"+77473334215"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete (id)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/64fe157a028fb90b5d6e3b5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"64fe157a028fb90b5d6e3b5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete (phoneNumber)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/mongodb/+77473334220",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"mongodb",
+								"+77473334220"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
