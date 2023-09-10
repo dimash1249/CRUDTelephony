@@ -64,4 +64,4 @@ For postgresql, I use the default postgres database. Username postgres, password
 There were problems with the data seeding into the database, but the problem seems to be solved. You may need to configure a tomcat, but jar file has a built-in tomcat (maybe, I have an application running, HTTP 200 ok).     
 PostgreSQL Table name 'person_phones'. Name of columns are respresented in models package.    
 MongoDB Table name 'PersonPhones'. Name of columns are represented in models package.      
-If you have any questions or errors, write to the mail @nogaybaevd11@list.ru 
+If you have any questions or errors, write to the mail @nogaybaevd11@list.ru  
