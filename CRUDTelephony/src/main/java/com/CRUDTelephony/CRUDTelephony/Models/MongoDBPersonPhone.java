@@ -18,6 +18,10 @@ public class MongoDBPersonPhone {
     private String phoneSecond;
     private Date creationDate;
 
+    public MongoDBPersonPhone() {
+
+    }
+
     public MongoDBPersonPhone(String id, String name, int birthYear, String phoneFirst, String phoneSecond, Date creationDate) {
         this.id = id;
         this.name = name;
